@@ -1,0 +1,45 @@
+#########################################################################################
+################################### THESE MUST BE SET ###################################
+#########################################################################################
+
+# Organization ID and Activation Key to register RHEL to RHSM
+ORG="1979710"
+KEY="shazam"
+
+# Registry username and Password
+REGISTRY_USERNAME="1979710|IM-Pull"
+REGISTRY_PASS="eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiJjYjdjZTJkMTQ1YmY0OWM5OTExYWUzNjhkY2IxMTBhMCJ9.qVx5NVY-_ks0Og1f4cJYRBbDQ12m0wiogm-7ZLRsfuDAXuihVOD3LbXlul7q9OYyVYru8-4xjqFE3OKReQeoBgNmqMNdHFILffE79L54Ux-xymvfMohN_q83usbSIRIvLeFbBYlFNkwLYrhBaMy5OtjbSyeKEy13faQWlMlA_QZO97qIdkG1KLrVVY44QPkV7RNGtCaVaxuRNyBgGOApDyiHCF01oZsar7UUk59o8ZZS0jfUBm0RdaxDPvbX_7YDb8J0zsYfYi2Ew8evqxSqfd04mMVUoNkHCOJ0VGpKGvWipjSoYJCTVfAFqIN8nU5ppujgz0biz231KkuBNBY771dKvpBbpAAXd7ZTxJ2jTZgXi9sOSJgpcA_MimIHtDQ0YdVbL5w12VYxNoz5PYHBRgxCTkllkYL0B9Yc-_iiCSp7TEg74JuKIjNrCDwzcns9kmVjGKFJ9NNsb0nPxGhgnU48ROr593DAr9gNM_TMDvEk8yQwx2fSUVke81cIvQQorm06BbAtwpPQ8acaNp5Pzc-WxJAYCgZNbpwlMe8IUnnGBbf9sqDdSHjELLvGrttT-t6sfPUMvY_SMPoTOauKv6Sa0ISM2XrIQo93h_RdoxlutL6Jbfjm0SiWCCgPk-8dmGP5DEvByuoeOo9_NqUP6vSR7ypOAejGKXq_FDFDJNE"
+
+# API Token
+OFFLINE_TOKEN="eyJhbGciOiJIUzUxMiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI0NzQzYTkzMC03YmJiLTRkZGQtOTgzMS00ODcxNGRlZDc0YjUifQ.eyJpYXQiOjE3MzM0MjgyNDAsImp0aSI6IjU5ZmM0MWFmLWFlODAtNGMxOC04MjY0LTk2MDBlMzliZGRjNCIsImlzcyI6Imh0dHBzOi8vc3NvLnJlZGhhdC5jb20vYXV0aC9yZWFsbXMvcmVkaGF0LWV4dGVybmFsIiwiYXVkIjoiaHR0cHM6Ly9zc28ucmVkaGF0LmNvbS9hdXRoL3JlYWxtcy9yZWRoYXQtZXh0ZXJuYWwiLCJzdWIiOiJmOjUyOGQ3NmZmLWY3MDgtNDNlZC04Y2Q1LWZlMTZmNGZlMGNlNjpyaG4tc3VwcG9ydC1jc2hhYmF6aSIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJyaHNtLWFwaSIsInNpZCI6IjAwZDgwNmJlLTA0NjItNDIzYS05YjI3LWZkM2VkN2QwNzMzNiIsInNjb3BlIjoiYmFzaWMgcm9sZXMgd2ViLW9yaWdpbnMgY2xpZW50X3R5cGUucHJlX2tjMjUgb2ZmbGluZV9hY2Nlc3MifQ.JQ8DKojygltZpzJr4yQ61OenOonqBkOgBWDiT4i28Je_vedH0JhtnjIXk4vhfSivJZua4rMZ3dc-yjnoUrlx7A"
+
+# Doing a bundle setup for AAP
+AAP_BUNDLE="ansible-automation-platform-containerized-setup-bundle-2.5-6-x86_64.tar.gz"
+AAP_MANIFEST="manifest_Chip_Shabazian_20241207T005839Z.zip"
+
+#########################################################################################
+################################### THESE ARE OPTIONAL ##################################
+#########################################################################################
+# Setup as example.com Y/N
+USE_EXAMPLE="Y"
+
+# Directory to copy Workshop files into
+WS_DIR="~/RH1"
+
+# Hostname for the AAP Installation (and RHSM registration)
+AAP_HOSTNAME="aap.example.com"
+
+# Directory to copy all of the AAP setup files to
+AAP_DIR="~/AAP"
+ENVOY_HTTP_PORT="9080"
+ENVOY_HTTPS_PORT="9443"
+
+# Repos for workshop
+REPOS="kubealex/rh1-image-mode-soe kubealex/rh1-image-mode-container-app kubealex/rh1-image-mode"
+
+# Lab hostname and username
+SERVER="aap.example.com"  # Changing this causes a failure
+SERVER_USER="lab-user"
+
+# Username for gitea server
+GITEA_USER="gitea" # Changing this causes a failure
