@@ -1,5 +1,5 @@
 #!/bin/sh
-source RH1Vars
+source ./RH1Vars
 
 # Install ansible-core if it's not already installed
 [[ $(command -v ansible-playbook) ]] || sudo dnf -y install ansible-core
@@ -7,8 +7,8 @@ source RH1Vars
 # Install git if it's not already installed
 [[ $(command -v git) ]] || sudo dnf -y install git
 
-mkdir ${WS_DIR}
-cd ${WS_DIR}
+mkdir $HOME/${WS_DIR}
+cd $HOME/${WS_DIR}
 
 # clone the repos
 for i in ${REPOS} ; do git clone https://github.com/${i} ; done
@@ -36,7 +36,7 @@ fi
 # Get the gitea username
 [[ -z "${GITEA_USER}" ]] && echo -e "\n\n" && read -p "What is the username for your gitea instance? " GITEA_USER
 
-cd rh1-image-mode
+cd $HOME/${WS_DIR}/rh1-image-mode
 
 # Configure ansible.cfg and demo-setup-vars.yml with the gathered variables:
 sed -i "s/YOURTOKENHERE/${OFFLINE_TOKEN}/" ansible.cfg
@@ -51,7 +51,7 @@ sed -i "s/^gitea_username.*/gitea_username: ${GITEA_USER}/" demo-setup/demo-setu
 # Clear any history that may contain sensitive information
 history -c
 
-cd ~/RH1/rh1-image-mode
+cd $HOME/${WS_DIR}/rh1-image-mode
 
 # Install ansible-galaxy requirements
 ansible-galaxy install -r demo-setup/requirements.yml --force

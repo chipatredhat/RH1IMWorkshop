@@ -18,18 +18,19 @@ sudo subscription-manager register --org ${ORG} --activationkey ${KEY}
 # Setup the directories and files to install AAP from a bundle and configure the inventory file
 [[ -z "${AAP_BUNDLE}" ]] && echo -e "\n\n" && read -p "What is the name of the containerized aap setup bundle? " AAP_BUNDLE
 [[ -z "${AAP_DIR}" ]] && echo -e "\n\n" && read -p "What directory will we use to copy the AAP setup files to? " AAP_DIR
-tar xzvf ${AAP_BUNDLE} -C ${AAP_DIR}
+mkdir $HOME/${AAP_DIR}
+tar xzvf ${AAP_BUNDLE} -C $HOME/${AAP_DIR} --strip-components=1
 [[ -z "${AAP_MANIFEST}" ]] && echo -e "\n\n" && read -p "What is filename of your manifest? " AAP_MANIFEST
-mv ${AAP_MANIFEST} ${AAP_DIR}
-cd ${AAP_DIR}
+mv ${AAP_MANIFEST} $HOME/${AAP_DIR}
+cd $HOME/${AAP_DIR}
 mv inventory-growth inventory
 sed -i "s/aap.example.org/${AAP_HOSTNAME}/g" inventory
 sed -i "s/<set your own>/redhat/g" inventory
 [[ -z "${SERVER_USER}" ]] && echo -e "\n\n" && read -p "What is the lab username? " SERVER_USER
 sudo loginctl enable-linger ${SERVER_USER}
 echo "bundle_install=true" >> inventory
-echo "bundle_dir=${AAP_DIR}/bundle" >> inventory
-echo "controller_license_file=${AAP_DIR}/${AAP_MANIFEST}" >> inventory
+echo "bundle_dir=$HOME/${AAP_DIR}/bundle" >> inventory
+echo "controller_license_file=$HOME/${AAP_DIR}/${AAP_MANIFEST}" >> inventory
 [[ -z "${ENVOY_HTTP_PORT}" ]] && echo -e "\n\n" && read -p "What http are you using for AAP? " ENVOY_HTTP_PORT
 [[ -z "${ENVOY_HTTPS_PORT}" ]] && echo -e "\n\n" && read -p "What https are you using for AAP? " ENVOY_HTTPS_PORT
 echo "envoy_http_port=${ENVOY_HTTP_PORT}" >> inventory

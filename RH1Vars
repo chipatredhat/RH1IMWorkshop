@@ -24,7 +24,7 @@ AAP_MANIFEST="manifest_Chip_Shabazian_20241207T005839Z.zip"
 USE_EXAMPLE="Y"
 
 # Directory to copy Workshop files into
-WS_DIR="~/RH1"
+WS_DIR="RH1"
 
 # Hostname for the AAP Installation (and RHSM registration)
 AAP_HOSTNAME="aap.example.com"
