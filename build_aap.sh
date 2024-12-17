@@ -1,5 +1,5 @@
 #!/bin/sh
-source RH1Vars
+source ./RH1Vars
 
 # What is the hostname to install AAP to:
 [[ -z "${AAP_HOSTNAME}" ]] && echo -e "\n\n" && read -p "What is the host name for your AAP server? " AAP_HOSTNAME
@@ -36,7 +36,7 @@ echo "envoy_http_port=${ENVOY_HTTP_PORT}" >> inventory
 echo "envoy_https_port=${ENVOY_HTTPS_PORT}" >> inventory
 
 # If we are using example.com, get the ssl files and install the CA rpm
-if [ "${USE_EXAMPLE}" = "Y" ]
+if [ "${USE_EXAMPLE}" = "Y" ] ; then
 curl -sO https://raw.githubusercontent.com/chipatredhat/ImageModeWorkshop/refs/heads/main/files/wildcard.example.com.crt
 curl -sO https://raw.githubusercontent.com/chipatredhat/ImageModeWorkshop/refs/heads/main/files/wildcard.example.com.key
 sudo dnf -y install https://github.com/chipatredhat/ImageModeWorkshop/raw/refs/heads/main/files/example.com-root-ca-20240701-1.noarch.rpm
