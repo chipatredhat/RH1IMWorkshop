@@ -15,6 +15,12 @@ sudo subscription-manager register --org ${ORG} --activationkey ${KEY}
 # Install ansible-core if it's not already installed
 [[ $(command -v ansible-playbook) ]] || sudo dnf -y install ansible-core
 
+# Get the AAP Tarball
+[[ -z "${OFFLINE_TOKEN}" ]] && echo -e "\n\n" && read -p "What is your API Token? " OFFLINE_TOKEN
+DOWNLOAD_TOKEN=$(curl https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token -d grant_type=refresh_token -d client_id=rhsm-api -d refresh_token=${OFFLINE_TOKEN} | jq --raw-output .access_token)
+[[ -z "${AAP_SHA}" ]] && echo -e "\n\n" && read -p "What is the SHA-256 Checksum of the ansible-automation-platform-containerized-setup-bundle.tar.gz? " AAP_SHA
+curl -H "Authorization: Bearer ${DOWNLOAD_TOKEN}" -L https://api.access.redhat.com/management/v1/images/${AAP_SHA}/download -o ${AAP_BUNDLE}
+
 # Setup the directories and files to install AAP from a bundle and configure the inventory file
 [[ -z "${AAP_BUNDLE}" ]] && echo -e "\n\n" && read -p "What is the name of the containerized aap setup bundle? " AAP_BUNDLE
 [[ -z "${AAP_DIR}" ]] && echo -e "\n\n" && read -p "What directory will we use to copy the AAP setup files to? " AAP_DIR
