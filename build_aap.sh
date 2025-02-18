@@ -34,6 +34,7 @@ sed -i "s/aap.example.org/${AAP_HOSTNAME}/g" inventory
 sed -i "s/<set your own>/redhat/g" inventory
 [[ -z "${SERVER_USER}" ]] && echo -e "\n\n" && read -p "What is the lab username? " SERVER_USER
 sudo loginctl enable-linger ${SERVER_USER}
+sudo loginctl enable-linger $(whoami)
 echo "bundle_install=true" >> inventory
 echo "bundle_dir=$HOME/${AAP_DIR}/bundle" >> inventory
 echo "controller_license_file=$HOME/${AAP_DIR}/${AAP_MANIFEST}" >> inventory
